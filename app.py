@@ -1,8 +1,15 @@
-from flask import Flask
-from flask import render_template, request
+from flask import Flask,render_template, request
+from flask_sqlalchemy import SQLAlchemy
 import os
 
 app = Flask(__name__)
+
+
+@app.route('/')
+def index():
+  return render_template('hello.html')
+
+
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
