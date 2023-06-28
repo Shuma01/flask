@@ -1,3 +1,16 @@
-h1{
-    color: rebeccapurple;
+.navbar-light .navbar-nav .nav-link{
+    color: blue;
+    transition: 0.5s;
+}
+.navbar-light .navbar-nav .nav-link:hover{
+    opacity: 0.5;
+    color:  blue;
+}
+.navbar-light .navbar-brand {
+    color:  blue;
+    transition: 0.5s;
+}
+.navbar-light .navbar-brand:hover{
+    opacity: 0.5;
+    color:  blue;
 }

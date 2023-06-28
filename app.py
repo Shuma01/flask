@@ -1,19 +1,18 @@
-from flask import Flask,render_template, request ,redirect
+from flask import Flask,render_template, request ,redirect,url_for,flash
 from flask_sqlalchemy import SQLAlchemy
-from flask_bootstrap import Bootstrap
+
 import os
 
 app = Flask(__name__)
 
-bootstrap = Bootstrap(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-db = SQLAlchemy(app)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+# db = SQLAlchemy(app)
 
-class Post(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(30), nullable=False)
-    email = db.Column(db.String(100))
-    password= db.Column(db.String(30), nullable=False)
+# class Post(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(30), nullable=False)
+#     email = db.Column(db.String(100))
+#     password= db.Column(db.String(30), nullable=False)
 
 # @app.route('/', methods=['GET', 'POST'])
 # def index():
@@ -29,23 +28,26 @@ class Post(db.Model):
 #         db.session.add(new_post)
 #         db.session.commit()
 #         return redirect('/')
-
-@app.route('/')
-def index():
+app.config["SECRET_KEY"] = "sample1203"
+@app.route('/', methods=['GET', 'POST'])
+def upload_file():
+  if request.method == 'POST' :
+    file = request.files['file']
+    if ".xlsx" in str(file.filename):
+      file.save(os.path.join('./uploads', file.filename))
+      return f'{file.filename}がアップロードされました'
+    else:
+      flash('無効なファイルです')
+      return render_template('index.html')
+    
+  else:
     return render_template('index.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     return render_template('signup.html')
 
-@app.route('/upload', methods=['GET', 'POST'])
-def upload_file():
-  if request.method == 'POST':
-    file = request.files['file']
-    file.save(os.path.join('./uploads', file.filename))
-    return f'{file.filename}がアップロードされました'
-  else:
-    return render_template('upload.html')
+
 
 if __name__ == '__main__':
   app.run(debug=True)

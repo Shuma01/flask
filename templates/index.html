@@ -1,7 +1,17 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends "base.html" %}
+{% block body %}
 <div class="container">
-
-    <h1>aa</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <h1>ファイルのアップロード</h1>
+    <form class="input-group mb-3 " method="POST" enctype="multipart/form-data" accept=".xlsx">
+        <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon03">作成</button>
+        <input type="file" class="form-control" id="File" name="file" aria-describedby="inputGroupFileAddon03" aria-label="Upload">
+    </form>
 </div>
 {% endblock %}
