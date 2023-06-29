@@ -26,7 +26,7 @@ def search_columns(column, keyword):
 
 
 
-wb = openpyxl.load_workbook("三者面談（回答）.xlsx")
+wb = openpyxl.load_workbook("uploads/三者面談（回答）.xlsx")
 ws = wb.worksheets[0]
 
 #先生のセルの横軸取得
@@ -148,6 +148,6 @@ while True:
     j+=1
 ws.title="replace"
 
-wb.save('replace.xlsx')
+wb.save('uploads/replace.xlsx')
 
 wb.close()
