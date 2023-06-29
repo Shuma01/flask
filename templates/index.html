@@ -4,14 +4,24 @@
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}
-                <p>{{ message }}</p>
+            <div class="alert alert-danger mt-4" role="alert">
+                無効なファイルがアップロードされました。<a href="#" class="alert-link">よくある質問はこちら</a>
+            </div>
             {% endfor %}
         {% endif %}
     {% endwith %}
-    <h1>ファイルのアップロード</h1>
-    <form class="input-group mb-3 " method="POST" enctype="multipart/form-data" accept=".xlsx">
-        <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon03">作成</button>
-        <input type="file" class="form-control" id="File" name="file" aria-describedby="inputGroupFileAddon03" aria-label="Upload">
-    </form>
+    <div class="row mt-5">
+        <div class="col-xl-6 col-sm-12 mb-4">
+            <h1>エクセルファイルをアップロードしてください</h1>
+            <form class="input-group mb-3 " method="POST" enctype="multipart/form-data" accept=".xlsx">
+                <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon03">作成</button>
+                <input type="file" class="form-control" id="File" name="file" aria-describedby="inputGroupFileAddon03" aria-label="Upload">
+            </form>
+            <a href="#" class="link-primary">使い方はこちらから</a>
+        </div>
+        <div class="col-xl-6  col-sm-12">
+            <img src="{{ url_for('static', filename='img/mv.png') }}" alt="">
+    </div>
+    </div>
 </div>
 {% endblock %}

@@ -28,14 +28,14 @@ app = Flask(__name__)
 #         db.session.add(new_post)
 #         db.session.commit()
 #         return redirect('/')
-app.config["SECRET_KEY"] = "sample1203"
+app.secret_key = b'icecream2022'
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
   if request.method == 'POST' :
     file = request.files['file']
     if ".xlsx" in str(file.filename):
       file.save(os.path.join('./uploads', file.filename))
-      return f'{file.filename}がアップロードされました'
+      return render_template('index.html')
     else:
       flash('無効なファイルです')
       return render_template('index.html')

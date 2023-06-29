@@ -1,16 +1,47 @@
+body{
+    background: #FFF2E7;
+}
+
+nav{
+    background: #ED6103;
+}
+
+.navbar-light .navbar-toggler {
+    color: #FFF2E7;
+    border-color: #FFF2E7;
+}
+.navbar-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,242,231)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  }
 .navbar-light .navbar-nav .nav-link{
-    color: blue;
+    color: #FFF2E7;
     transition: 0.5s;
 }
 .navbar-light .navbar-nav .nav-link:hover{
     opacity: 0.5;
-    color:  blue;
+    color:  #FFF2E7;
 }
 .navbar-light .navbar-brand {
-    color:  blue;
+    color:  #FFF2E7;
     transition: 0.5s;
 }
 .navbar-light .navbar-brand:hover{
     opacity: 0.5;
-    color:  blue;
+    color:  #FFF2E7;
+}
+
+.btn-outline-secondary {
+    color: #ED6103;
+    border-color: #ED6103;
+}
+.btn-outline-secondary:hover {
+    color: #FFF2E7;
+    background-color: #ED6103;
+    border-color: #ED6103;
+}
+
+.form-control {
+    color: #ED6103;
+    background-color: #FFF;
+    border: 1px solid #ED6103;
 }
