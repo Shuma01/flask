@@ -94,6 +94,8 @@ while True:
     for j in range(3):
         new_ws["A2"].offset(i,j).value=ws["A2"].offset(i,j).value
     i+=1
+
+
 new_ws["A2"].offset(i,0).value=0
 new_ws["B2"].offset(i,0).value="合計"
 new_ws["C2"].offset(i,0).value=-1
@@ -163,7 +165,9 @@ wb.close()
 
 
 df= pd.read_excel('uploads/replace.xlsx', index_col=[0,1,2])
+
 df=df.sort_values(by=["兄弟","合計"],ascending=[False,True])
+
 print(df)
 
 
@@ -176,6 +180,7 @@ for i in range(len(df.columns)-1):
     if ws["D2"].offset(0,i).value==1:
         new_min=ws["D2"].offset(len(df.index)-1,i).value
         if min > new_min:
+            min_column=i
             min=new_min
 
 print(min)

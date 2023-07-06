@@ -1,5 +1,4 @@
 import openpyxl
-import pandas as pd
 
 #置換する文字を返す関数
 def text_to_array(cell):
@@ -7,27 +6,11 @@ def text_to_array(cell):
     _str=_str.replace(' ', '')
     arrays=_str.split(',')
     return arrays
-# 特定の列を複数検索
-def search_columns(column, keyword):
-    result = []
-    for cell in column:
-        # セルのデータを文字列に変換
-        try:
-            value = str(cell.value)
-        # 文字列に変換できないデータはスキップ
-        except:
-            continue
-        # キーワードに一致するセルの番地を取得
-        if keyword in value:
-            cell_address = openpyxl.utils.get_column_letter(cell.column) +  str(cell.row)
-            result.append(cell_address)
-            
-    return result
-
 
 
 wb = openpyxl.load_workbook("uploads/三者面談（回答）.xlsx")
 ws = wb.worksheets[0]
+ws.title="replace"
 
 #先生のセルの横軸取得
 teacher_cell=ws["C2"]
@@ -107,39 +90,5 @@ for row in ws.iter_rows(min_row=2 ,min_col=4):
 
     if cell.value is None:
         break
-
-df= pd.read_excel('uploads/replace.xlsx', index_col=[0,1,2])
-df=df.fillna(0)
-df["Total"] = df.sum(axis=1)
-df=df.sort_values(by=["兄弟","Total"],ascending=[False,True])
-df.loc["Total"] = df.sum()
-
-#0でない行を抽出する
-df_process = df.loc[:, df.iloc[0] != 0]
-#その中で最小のIndexを取得する
-print(df_process.iloc[-1].idxmin())
-
-put_num=df_process.iloc[-1].idxmin()
-
-#テーブルの作成
-print_ws= wb.create_sheet(index=2, title="print")
-for i,value in enumerate(table_row):
-    print_ws.cell(row=2+i,column=1).value=value
-for i,value in enumerate(table_column):
-    print_ws.cell(row=1,column=2+i).value=value
-
-#書き込む行と列を指定
-q, mod = divmod(put_num, len(table_column))
-print(q)
-print(mod)
-print_ws.cell(row=2+q,column=1+mod).value=1
-
-df=df.drop(df.index[[0]])
-print(df)
-
-ws.title="replace"
-
-
-
 wb.save('uploads/replace.xlsx')
 wb.close()
