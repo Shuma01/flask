@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
 {% block body %}
+<h1 class="mt-5">{{name}}さんの日程を選択してください</h1>
+<ul class="p-0">
+    {% for day in enable_days %}
+        <li><button type="button" class="btn btn-primary mt-4">{{ day }}</button></li>
+    {% endfor %}
+</ul>
 
 {% endblock %}

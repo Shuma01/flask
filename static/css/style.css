@@ -45,3 +45,20 @@ nav{
     background-color: #FFF;
     border: 1px solid #ED6103;
 }
+
+
+.btn-primary{
+    background-color: #ED6103;
+    border-color: #ED6103;
+}
+
+.btn-primary:hover{
+    background-color: #FFF2E7;
+    color: #ED6103;
+    border-color: #ED6103;
+}
+
+.btn-primary:focus{
+    background-color: #ED6103;
+    border-color: #ED6103;
+}
