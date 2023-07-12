@@ -96,4 +96,3 @@ def cleansing(file_name):
     wb.close()
     # os.remove(f'uploads/{file_name}')
     return [table_row,table_column]
-
