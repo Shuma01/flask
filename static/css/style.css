@@ -85,3 +85,8 @@ nav {
     background: #ed6103;
     margin-bottom: 0;
 }
+
+.list-group-item.active{
+    background: #ed6103;
+    border: #ed6103;
+}

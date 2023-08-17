@@ -83,7 +83,7 @@ def download():
   else:
     return send_file("./uploads/print.xlsx",as_attachment=True)
   
-@app.errorhandler(404)
+@app.errorhandler(Exception)
 def page_not_found(error):
   return render_template('page_not_found.html'), 404
 
