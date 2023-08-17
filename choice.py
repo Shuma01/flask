@@ -91,6 +91,6 @@ def print_table(table_row,table_column):
         rows.append(row)
     return rows
 
-table_column=['１日目', '２日目', '３日目']
-table_row=['9:00-10:00', '10:00-11:00', '11:00-12:00', '12:00-13:00']
+# table_column=['１日目', '２日目', '３日目']
+# table_row=['9:00-10:00', '10:00-11:00', '11:00-12:00', '12:00-13:00']
 

@@ -1,6 +1,7 @@
 from flask import Flask,render_template, request ,redirect,url_for,flash,send_file
 import data_cleansing as dc
 import choice
+import shutil
 
 import os
 
@@ -17,6 +18,7 @@ def index():
   global table_column,table_row
   if request.method == 'POST' :
     file = request.files['file']
+    print(file)
     if ".xlsx" in str(file.filename):
       file.save(os.path.join('./uploads', "replace.xlsx"))
       table_row,table_column=dc.cleansing("./uploads/replace.xlsx")
@@ -29,8 +31,23 @@ def index():
   else:
     return render_template('index.html')
 
+@app.route('/how_to_use', methods=['GET'])
+def how_to_use():
+  return render_template('how_to_use.html')
+
+@app.route('/sample', methods=['GET','POST'])
+def sample():
+    global table_column,table_row
+    shutil.copyfile("./static/sample.xlsx", "./uploads/replace.xlsx")
+    table_row,table_column=dc.cleansing("./uploads/replace.xlsx")
+    print(table_column)
+    choice.make_excel(table_row,table_column)
+    return redirect(url_for('makedata'))
+
 @app.route('/makedata', methods=['GET','POST'])
 def makedata():
+  if not os.path.isfile("./uploads/replace.xlsx"):
+      return redirect('page_not_found')
   time_id = None
   choice.make_df_file()
   df=choice.make_df()
@@ -66,7 +83,9 @@ def download():
   else:
     return send_file("./uploads/print.xlsx",as_attachment=True)
   
-
+@app.errorhandler(404)
+def page_not_found(error):
+  return render_template('page_not_found.html'), 404
 
 if __name__ == '__main__':
   app.run(debug=True)

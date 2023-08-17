@@ -2,7 +2,7 @@
 {% block body %}
 <div class="row mt-5">
     <div class="col-xl-6 col-sm-12 mb-4">
-        <h1>エクセルファイルをアップロードしてください</h1>
+        <h2>エクセルファイルをアップロードしてください</h2>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
@@ -16,7 +16,8 @@
                 <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon03">作成</button>
                 <input type="file" class="form-control" id="File" name="file" aria-describedby="inputGroupFileAddon03" aria-label="Upload">
             </form>
-            <a href="#" class="link-primary">使い方はこちらから</a>
+            <a href="{{url_for('how_to_use')}}" class="link-primary">使い方はこちらから</a>
+            <a href="https://drive.google.com/drive/folders/1BAT88ypcWsVugXUtAWjXzi6lx2uoawk7?usp=sharing" class="link-primary">フォームのダウンロードはこちら</a>
         </div>
         <div class="col-xl-6  col-sm-12">
             <img src="{{ url_for('static', filename='img/mv.png') }}" alt="">
