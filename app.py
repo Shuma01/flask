@@ -8,7 +8,7 @@ import os
 app = Flask(__name__)
 
 
-app.secret_key = b'icecream2022'
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
   if os.path.isfile("./uploads/replace.xlsx"):
